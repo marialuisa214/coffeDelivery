@@ -12,6 +12,10 @@ export const defautTheme ={
   'purple-500': '#8047F8',
   'purple-800': '#4B2995',
 
+  'yellow-100': '#F1E9C9',
+  'yellow-500': '#DBAC2C',
+  'yellow-800': '#C47F17',
+
   
   'white-100': '#FAFAFA',
   'white-200': '#F3F2F2',
