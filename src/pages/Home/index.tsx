@@ -2,10 +2,12 @@ import { Coffee, Package, ShoppingCart, Timer } from '@phosphor-icons/react';
 import coffe from '../../assets/coffe.svg';
 import { IconBackgroud, IntroDivPrincipal, IntroDivText, IntroGridContext, IntroTitulo} from './styles';
 import { useTheme } from 'styled-components';
+import { CoffeList } from './components/CoffeList';
 export function Home() {
     const theme = useTheme()
 
     return (
+        <div>
         <IntroDivPrincipal>
             <IntroDivText>
                 <IntroTitulo>
@@ -40,7 +42,8 @@ export function Home() {
                 </IntroGridContext>
             </IntroDivText>
             <img src={coffe} alt="" />
-            
         </IntroDivPrincipal>
+        <CoffeList/>
+        </div>
     )
 }
