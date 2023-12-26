@@ -1,5 +1,5 @@
 export const defautTheme ={
-    'white': '#FFFFFF',
+  'white': '#FFFFFF',
 
   'gray-100': '#D7D5D5',
   'gray-200': '#8D8686',

@@ -29,6 +29,7 @@ export const Local = styled.div`
         background-color: transparent;
         border: none;
         color: ${(props) => props.theme['purple-500']};
+        font-size: 0.8rem;
 
         &:focus { 
             border: none;
@@ -67,8 +68,13 @@ export const HeaderInfoCompra = styled.label`
     
 `
 
-export const HeaderButtonCompra = styled.label`
-    padding: 0.4rem;
+export const HeaderButtonCompra = styled.button`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.5rem;
     border: none;
     border-radius: 4px;
     background-color: ${(props) => props.theme['yellow-100']};
