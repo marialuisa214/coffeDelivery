@@ -31,7 +31,7 @@ export function CoffeList() {
                     </CoffeShopping>
                 </CoffeCard>
 
-                {coffe.map((item) => (
+                {coffe.map(() => (
                     <CoffeCard>
                     <img src={coffeExemplo} alt="" />
                     <div>

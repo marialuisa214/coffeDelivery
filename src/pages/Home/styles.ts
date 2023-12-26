@@ -24,7 +24,8 @@ export const IntroTitulo = styled.div`
     h1 {
         font-size: 2.5rem;
         color: ${(props) => props.theme['gray-800']};
-        font-family: 'Varela Round', sans-serif 
+        font-family: 'Baloo 2', sans-serif;
+
     }
     p {
         font-size: 1.2rem;

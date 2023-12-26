@@ -1,6 +1,21 @@
+import { InfoCompra } from "./Components/InfoCompra"
+
 export function Checkout() {  
     return (
-        <h2>Checkout</h2>
+        <form>
+            <InfoCompra />
+            <div>
+                <div>
+
+                </div>
+                <div>
+
+                </div>
+                
+
+            </div>
+
+        </form>
     )
 }
    
