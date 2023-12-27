@@ -1,75 +1,57 @@
-import { Trash } from '@phosphor-icons/react';
-import coffeExemplo from '../../../../assets/coffeExemplo.svg';
-import { ButtonSubmit, CoffeInfo, CoffeInfoBox, CoffePrices, CoffeQuantidade, CoffeRemove, Container, PainContainer } from './style';
-import { useTheme } from 'styled-components';
+import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "@phosphor-icons/react";
+import { BoxLocalization, BoxLocalizationTitle, BoxPaing, BoxPaingTitle, Container, ContextLocalizationBase, ContextLocalizationCidede, ContextLocalizationComplemento, ContextLocalizationRua, ContextLocalizationUf } from "./style";
+import { useTheme } from "styled-components";
 
-export function InfoCompra() {
-    const theme = useTheme()
+export function InfoEndereco() { 
+    const theme =useTheme();
     return(
         <Container>
-            <h2>Cafés selecionados</h2>
-            <PainContainer>
-                <CoffeInfoBox> {/* cafes comprados */}
-                    <CoffeInfo>
-                        <img src={coffeExemplo} alt="" />
-                        <CoffeQuantidade>
-                            <label htmlFor="">Expresso tradicional</label>
-                            <CoffeRemove>
-                                <input type="number"></input>
-                                <button>
-                                        <Trash size={20} color={theme['purple-500']}/>
-                                    
-                                    REMOVER
-                                </button>
-                            </CoffeRemove>
-                        </CoffeQuantidade>
-                    </CoffeInfo>
-                    <strong>R$ 19,80</strong>
-                        
-                </CoffeInfoBox>
+            <h1>Complete seu pedido</h1>
+            <BoxLocalization>
+                <BoxLocalizationTitle>
+                    <MapPinLine size={23} color={theme['yellow-800']}/>
+                    <div>
+                        <h2>Endereço de entrega</h2>
+                        <p>Informe o endereço onde deseja receber seu pedido</p>
+                    </div>
+                </BoxLocalizationTitle>
+                <ContextLocalizationBase type="text" placeholder="CEP"/>
+                <ContextLocalizationRua type="text" placeholder="Rua"/>
+                <ContextLocalizationBase type="text" placeholder="Numero"/>
+                <ContextLocalizationComplemento type="text" placeholder="Complemento"/>
+                <ContextLocalizationBase type="text" placeholder="Bairro"/>
+                <ContextLocalizationCidede type="text" placeholder="Cidade"/>
+                <ContextLocalizationUf type="text" placeholder="UF"/>
+            </BoxLocalization>
 
-                <CoffeInfoBox> {/* cafes comprados */}
-                    <CoffeInfo>
-                        <img src={coffeExemplo} alt="" />
-                        <CoffeQuantidade>
-                            <label htmlFor="">Expresso tradicional</label>
-                            <CoffeRemove>
-                                <input type="number"></input>
-                                <button>
-                                        <Trash size={20} color={theme['purple-500']}/>
-                                    
-                                    REMOVER
-                                </button>
-                            </CoffeRemove>
-                        </CoffeQuantidade>
-                    </CoffeInfo>
-                    <strong>R$ 19,80</strong>
-                        
-                </CoffeInfoBox>
+            <BoxPaing>
+                <BoxPaingTitle>
+                    <CurrencyDollar size={23}  color={theme['purple-500']} />
+                    <div>
+                        <h2>Endereço de entrega</h2>
+                        <p>Informe o endereço onde deseja receber seu pedido</p>
+                    </div>
+                </BoxPaingTitle>
+
+                <button>
+                    <CreditCard size={18} color={theme['purple-500']} />
+                    <span>CARTÃO DE CRÉDITO</span>
+                </button>
+
+                <button>
+                    <Bank size={18} color={theme['purple-500']} />
+                    <span>CARTÃO DE DÉBITO</span>
+                </button>
+
+                <button>
+                    <Money size={18} color={theme['purple-500']} />
+                    <span>DINHEIRO</span>
+                </button>
+                    
 
 
-                
-                {/* informaçao final da compra */}
-                <CoffePrices>    
-                    <label htmlFor="">Total de itens</label>
-                    <span>R$ 29,70</span>
-                </CoffePrices>
-                <CoffePrices>
-                    <label htmlFor="">Entrega</label>
-                    <span>R$ 3,50</span>
-                </CoffePrices>
-                <CoffePrices>
-                    <strong>Total</strong>
-                    <strong>R$ 33,20</strong>
+            </BoxPaing>
 
-                </CoffePrices>
-                
-                <ButtonSubmit>
-                    CONFIRMAR PEDIDO
-                </ButtonSubmit>
-
-            </PainContainer>
-         </Container>
+        </Container>
     )
- }  
-   
+}

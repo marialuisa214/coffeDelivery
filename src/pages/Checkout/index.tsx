@@ -1,15 +1,14 @@
-import { InfoCompra } from "./Components/InfoCompra"
-import { InfoEndereco } from "./Components/InfoEndereço"
+import { InfoCompra } from "./Components/InfoPedido"
+import { InfoEndereco } from "./Components/InfoCompra"
+import {  Container } from "./styles"
 
 export function Checkout() {  
     return (
         <form>
-            <div>
+            <Container>
                 <InfoEndereco />
-
-            </div>
-            <InfoCompra />
-
+                <InfoCompra />
+            </Container>
         </form>
     )
 }
