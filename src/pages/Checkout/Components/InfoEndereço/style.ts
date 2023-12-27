@@ -66,3 +66,42 @@ export const ContextLocalizationUf = styled.input`
     grid-column-start:18;
     grid-column-end: 20;
 `
+
+
+export const BoxPaing = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  background-color: ${({ theme }) => theme['white-300']};
+  padding: 30px;
+  border-radius: 6px;
+
+  button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px;
+
+    border: none;
+    border-radius: 4px;
+    color: ${({ theme }) => theme['gray-500']};
+    background-color: ${({ theme }) => theme['white-400']};
+  }
+  
+`
+export const BoxPaingTitle = styled.div`
+    grid-column-start: 1;
+    grid-column-end: 4;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    align-items: start;
+
+    h2 {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: ${({ theme }) => theme['gray-400']};
+    }
+`
