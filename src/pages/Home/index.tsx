@@ -43,6 +43,7 @@ export function Home() {
             </IntroDivText>
             <img src={coffe} alt="" />
         </IntroDivPrincipal>
+        
         <CoffeList/>
         </div>
     )
