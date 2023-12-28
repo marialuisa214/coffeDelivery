@@ -99,6 +99,7 @@ export const CoffeShopping = styled.div`
         justify-content: center;
 
         border-radius: 4px;
+        cursor: pointer;
     } 
 `
          
