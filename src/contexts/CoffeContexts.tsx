@@ -48,6 +48,7 @@ interface CoffeContextType {
     coffeeList: Coffe[];
     coffeShoop: ShoppingCar;
     addCoffe: (id: number, quantity: number) => void;
+    removeCoffe: (id: number) => void;
 }
 
 export const CoffeeContext = createContext({} as CoffeContextType)
@@ -115,11 +116,40 @@ export function CoffeContextProvider({ children }: CoffeContextProviderProps) {
         }
 
     }
+
+    function removeCoffe(id: number) {
+        const coffeeWantRemove = shoopCar.listIdCoffe.find((coffe) => coffe.id === id)
+        const infoCoffee = exemplosCoffes.find((c) => c.id === id);
+        
+        if (coffeeWantRemove && infoCoffee) {
+            const listIdCoffe = shoopCar.listIdCoffe;
+
+            const index = listIdCoffe.findIndex((item) => item.id === id );
+            const quantidadeAnterior = listIdCoffe[index].totalQuantity;
+
+
+
+            listIdCoffe.splice(index, 1);
+
+            
+            const newShoopCar = {
+                listIdCoffe: listIdCoffe,
+
+                tatolPrice: shoopCar.tatolPrice - (quantidadeAnterior * infoCoffee.price),
+
+                totalNumberCoffe: shoopCar.totalNumberCoffe - quantidadeAnterior,
+            }
+            setShoopCar(newShoopCar);
+
+        
+        }
+    }
     return (
         <CoffeeContext.Provider value={{
             coffeeList: exemplosCoffes,
             coffeShoop: shoopCar,
             addCoffe: HandleAddCoffe,
+            removeCoffe: removeCoffe,
         }}>
             {children}
         </CoffeeContext.Provider>

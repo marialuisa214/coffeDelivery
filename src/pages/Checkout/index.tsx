@@ -4,12 +4,12 @@ import {  Container } from "./styles"
 
 export function Checkout() {  
     return (
-        <form>
+        <>
             <Container>
                 <InfoEndereco />
                 <InfoCompra />
             </Container>
-        </form>
+        </>
     )
 }
    

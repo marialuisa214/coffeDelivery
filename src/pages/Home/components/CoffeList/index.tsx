@@ -46,7 +46,6 @@ export function CoffeList() {
                     </CoffeShopping>
                     </form>
                 </CoffeCard>
-
                 ))}
             </ListCoffee>
         </ContextListCoffe>
