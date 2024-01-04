@@ -268,6 +268,12 @@ export const ButtonSubmit = styled.button`
     
     background-color: ${(props) => props.theme['yellow-500']};
     color: ${(props) => props.theme['white']};
+
+    &:disabled {
+      background-color: ${(props) => props.theme['yellow-100']};
+      cursor: not-allowed;
+
+    }
     
 `
 
@@ -279,12 +285,25 @@ export const RadioAction = styled.div`
   position: relative;
 
     label, input {
-      display: block;
+      display: flex;
       position: absolute;
-      top: 0; 
+
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      /* top: 0; 
       left: 0;
       right: 0;
-      bottom: 0;
+      bottom: 0; */
+
+      width: 132px;
+      height: 60px;
+      background-color: ${(props) => props.theme['gray-100']} ;
+
+      border-radius: 4px;
+      border: solid 1px;
+      border-color: ${(props) => props.theme['gray-200']};
 
     }
 
@@ -294,13 +313,24 @@ export const RadioInput = styled.input`
     opacity: 0.011;
     z-index: 100;
 
+    &:hover + label{
+      background: ${(props) => props.theme['purple-100']};
+
+    }
+
     &:checked + label {
-      background: #20b8be;
+      background: ${(props) => props.theme['purple-500']};
+      color: ${(props) => props.theme['white-100']};
       border-radius: 4px;
     }
 `;
 
 export const RadioLabel = styled.label`
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   z-index: 90;
   line-height: 1.8em;

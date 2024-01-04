@@ -1,4 +1,4 @@
-import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money, Trash } from "@phosphor-icons/react";
+import {  CurrencyDollar, MapPinLine, Trash } from "@phosphor-icons/react";
 import coffeExemplo from '../../../../assets/coffeExemplo.svg';
 import { BoxLocalization, BoxLocalizationTitle, BoxPaing, BoxPaingTitle, ButtonSubmit, CoffeInfo, CoffeInfoBox, CoffePrices, CoffeQuantidade, CoffeRemove, Container, Container1, Container2, ContextLocalizationBase, ContextLocalizationCidede, ContextLocalizationComplemento, ContextLocalizationRua, ContextLocalizationUf, PainContainer, RadioAction, RadioInput, RadioLabel } from "./style";
 import * as zod from 'zod'
@@ -26,13 +26,14 @@ export function InfoEndereco() {
 
 
     const endereçovalidacaoSchema = zod.object({
-        cep: zod.string(),
-        cidade: zod.string(),
-        bairro: zod.string(),
-        rua: zod.string(),
-        numero: zod.string(),
+        cep: zod.string().min(3),
+        cidade: zod.string().min(3),
+        bairro: zod.string().min(3),
+        rua: zod.string().min(3),
+        numero: zod.string().min(1),
         complemento: zod.string(),
-        uf: zod.string()
+        uf: zod.string().min(2),
+        pagamento: zod.string()
 
     })
 
@@ -47,18 +48,29 @@ export function InfoEndereco() {
         rua: '',
         numero: '',
         complemento: '',
-        uf: ''
+        uf: '',
+        pagamento: ''
         },
       })
-    const { handleSubmit, reset, register } = novaCompraForm
+    const { handleSubmit, reset, register, watch } = novaCompraForm
+
+    const watchCep = watch('cep')
+    const watchcidade = watch('cidade')
+    const watchbairro = watch('bairro')
+    const watchrua = watch('rua')
+    const watchnumero = watch('numero')
+    const watchuf = watch('uf')
+    const watchpagamento = watch('pagamento')
 
     function handleFinalizaCompra(data:FormDataEndereco){
         console.log("fui submetido")
         console.log(data)
+        window.location.href = "/checkout/success";
+
         reset()
     }
     return(
-        <Container  onSubmit={handleSubmit(handleFinalizaCompra)}>
+        <Container onSubmit={handleSubmit(handleFinalizaCompra)}>
          <FormProvider {...novaCompraForm}> 
 
         <Container1>
@@ -71,13 +83,13 @@ export function InfoEndereco() {
                         <p>Informe o endereço onde deseja receber seu pedido</p>
                     </div>
                 </BoxLocalizationTitle>
-                <ContextLocalizationBase type="text" id="cep" placeholder="CEP"  {...register('cep')}/>
-                <ContextLocalizationRua type="text" id="rua" placeholder="Rua" {...register('rua')}/>
-                <ContextLocalizationBase type="text" id="numero" placeholder="Numero" {...register('numero')}/>
+                <ContextLocalizationBase type="text" id="cep" placeholder="CEP" required {...register('cep')}/>
+                <ContextLocalizationRua type="text" id="rua" placeholder="Rua" required  {...register('rua')}/>
+                <ContextLocalizationBase type="text" id="numero" placeholder="Numero"required {...register('numero')}/>
                 <ContextLocalizationComplemento type="text" id="complemento" placeholder="Complemento" {...register('complemento')}/>
-                <ContextLocalizationBase type="text" id="bairro" placeholder="Bairro" {...register('bairro')}/>
-                <ContextLocalizationCidede type="text" id="cidade" placeholder="Cidade" {...register('cidade')}/>
-                <ContextLocalizationUf type="text" id="uf" placeholder="UF" {...register('uf')}/>
+                <ContextLocalizationBase type="text" id="bairro" placeholder="Bairro" required {...register('bairro')}/>
+                <ContextLocalizationCidede type="text" id="cidade" placeholder="Cidade" required {...register('cidade')}/>
+                <ContextLocalizationUf type="text" id="uf" placeholder="UF" required {...register('uf')}/>
             </BoxLocalization>
 
             <BoxPaing>
@@ -90,26 +102,27 @@ export function InfoEndereco() {
                 </BoxPaingTitle>
 
                 <RadioAction>
-                    <RadioInput type="radio" id="1" name="checkoutPain"/>
+                    <RadioInput type="radio" name='formaPagamento' id="1" value="cartão credito" {...register('pagamento')} required/>
                     <RadioLabel>
-                        <CreditCard size={18} color={theme['purple-500']} />
-                        CARTÃO DE CRÉDITO</RadioLabel>
+                        {/* <CreditCard size={18} color={theme['purple-500']} /> */}
+                        CARTÃO DE CRÉDITO
+                    </RadioLabel>
                     
                 </RadioAction>
                     
                 <RadioAction>
-                    <RadioInput type="radio" id="2" name="checkoutPain"/>
+                    <RadioInput type="radio" name='formaPagamento' id="2" value="cartão debito" {...register('pagamento')}/>
                     <RadioLabel>
-                        <Bank size={18} color={theme['purple-500']} />
+                        {/* <Bank size={18} color={theme['purple-500']} /> */}
                         CARTÃO DE DÉBITO
                     </RadioLabel>
                 </RadioAction>
                     
                 <RadioAction>
-                    <RadioInput type="radio" id="3" name="checkoutPain"/>
+                    <RadioInput type="radio" name='formaPagamento' id="3" value="dinheiro" {...register('pagamento')}/>
                     
                     <RadioLabel>
-                        <Money size={18} color={theme['purple-500']} />
+                        {/* <Money size={18} color={theme['purple-500']} /> */}
                         DINHEIRO
                     </RadioLabel>
                 </RadioAction>
@@ -150,7 +163,7 @@ export function InfoEndereco() {
                                 </CoffeRemove>
                             </CoffeQuantidade>
                         </CoffeInfo>
-                    <strong>R${(coffee.totalQuantity * coffeeInfo.price)}</strong>
+                    <strong>R${(coffee.totalQuantity * coffeeInfo.price).toFixed(2)}</strong>
                         
                 </CoffeInfoBox>
                 )
@@ -168,11 +181,11 @@ export function InfoEndereco() {
             </CoffePrices>
             <CoffePrices>
                 <strong>Total</strong>
-                <strong>R$ {coffeShoop.tatolPrice + parseFloat(valorEntrega)}</strong>
+                <strong>R$ {(coffeShoop.tatolPrice + parseFloat(valorEntrega))}</strong>
 
             </CoffePrices>
             
-            <ButtonSubmit type="submit">
+            <ButtonSubmit disabled={!watchCep && !watchbairro && !watchrua && !watchnumero && !watchuf && !watchpagamento && !watchcidade} type="submit">
                 CONFIRMAR PEDIDO
             </ButtonSubmit>
 
