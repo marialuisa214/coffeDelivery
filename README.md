@@ -1,5 +1,7 @@
 # Coffe Delivery
 Exercício proposto no 2º desafio React, do Curso RocketSeat da trilha de ReactJS do Ignite.
+![image](https://github.com/marialuisa214/coffeDelivery/assets/91849929/664b7667-f089-4386-b249-ca09d4f74e54)
+
 
 # Sobre o desafio
 
